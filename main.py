@@ -8,35 +8,16 @@ class App:
     def __init__(self):
         self.userlist = []     
         self.headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"}
-        self.cookie = self.GetCookies()
         self.page = 1
-        self.reportedList = []
         os.system("title "+"THT IHBAR OTOMASYONU")
         os.system("color F")
-        try:
-            self.hashUser=self.cookie[0].strip()
-            self.hashTfaTrust =self.cookie[1].strip()
-            self.cookies = {
-                'xf_user':f'{self.hashUser}',
-                'xf_tfa_trust':f'{self.hashTfaTrust}'
-            }
-        except:
-            print("Hatalı Cookies Verisi Lütfen Kontrol Ediniz !")
-            input()
-            exit()
+        self.hashUser = input("'xf_user' Bilgisini giriniz: ").strip()
+        self.hashTfaTrust = input("'xf_tfa_trust' Bilgisini giriniz: ").strip()
+        self.cookies = {
+            'xf_user':f'{self.hashUser}',
+            'xf_tfa_trust':f'{self.hashTfaTrust}'
+        }
         self.Transactions()
-
-
-    def GetCookies(self):
-        try:
-            file = open("cookies.txt", "r")
-            cookies = file.readlines()
-            file.close()
-            return cookies
-        except:
-            print("Cookies.txt Dosyası Bulunamadı. Uygulamayı kapatmak için lütfen bir tuşa basınız.")
-            input()
-            exit()
 
 
     def ControlAccount(self):
